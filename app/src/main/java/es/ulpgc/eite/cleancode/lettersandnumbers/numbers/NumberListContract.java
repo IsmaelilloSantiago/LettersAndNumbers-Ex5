@@ -1,6 +1,7 @@
 package es.ulpgc.eite.cleancode.lettersandnumbers.numbers;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import es.ulpgc.eite.cleancode.lettersandnumbers.app.LettersToNumbersState;
 import es.ulpgc.eite.cleancode.lettersandnumbers.app.NumbersToLettersState;
@@ -30,10 +31,11 @@ public interface NumberListContract {
   }
 
   interface Model {
-    String getStoredData();
+    List<NumberData> getStoredData();
     void onDataFromNextScreen(String data);
-    void onRestartScreen(String data);
+    void onRestartScreen(List<NumberData> data);
     void onDataFromPreviousScreen(String data);
+    void addNum(int cuenta);
   }
 
 

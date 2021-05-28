@@ -1,5 +1,7 @@
 package es.ulpgc.eite.cleancode.lettersandnumbers.numbers;
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.lettersandnumbers.app.AppMediator;
@@ -30,6 +32,8 @@ public class NumberListPresenter implements NumberListContract.Presenter {
     if (state == null) {
       state = new NumberListState();
     }
+    state.cuenta = 1;
+
 
     // use passed state if is necessary
     LettersToNumbersState savedState = getStateFromPreviousScreen();
@@ -46,7 +50,7 @@ public class NumberListPresenter implements NumberListContract.Presenter {
     // Log.e(TAG, "onRestart()");
 
     // update the model if is necessary
-    model.onRestartScreen(state.data);
+    model.onRestartScreen(state.datasource);
   }
 
   @Override
@@ -64,7 +68,7 @@ public class NumberListPresenter implements NumberListContract.Presenter {
     */
 
     // call the model and update the state
-    state.data = model.getStoredData();
+    //state.data = model.getStoredData();
 
     // update the view
     view.get().onDataUpdated(state);
@@ -115,12 +119,16 @@ public class NumberListPresenter implements NumberListContract.Presenter {
 
   @Override
   public void onClickNumberListCell(NumberData data) {
-    // Log.e(TAG, "onClickNumberListCell()");
+     Log.e(TAG, "onClickNumberListCell()");
   }
 
   @Override
   public void onClickNumberListButton() {
-    // Log.e(TAG, "onClickNumberListButton()");
+    Log.e(TAG, "onClickNumberListButton()");
+    model.addNum(state.cuenta);
+    state.datasource = model.getStoredData();
+    state.cuenta++;
+    onResume();
   }
 
   @Override

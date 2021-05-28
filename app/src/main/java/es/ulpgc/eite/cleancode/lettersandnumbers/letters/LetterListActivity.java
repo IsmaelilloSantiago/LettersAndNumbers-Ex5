@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import es.ulpgc.eite.cleancode.lettersandnumbers.R;
 import es.ulpgc.eite.cleancode.lettersandnumbers.app.AppMediator;
 import es.ulpgc.eite.cleancode.lettersandnumbers.data.LetterData;
+import es.ulpgc.eite.cleancode.lettersandnumbers.numbers.NumberListActivity;
 
 public class LetterListActivity
     extends AppCompatActivity implements LetterListContract.View {
@@ -94,7 +95,7 @@ public class LetterListActivity
 
   @Override
   public void navigateToNextScreen() {
-    Intent intent = new Intent(this, LetterListActivity.class);
+    Intent intent = new Intent(this, NumberListActivity.class);
     startActivity(intent);
   }
 
