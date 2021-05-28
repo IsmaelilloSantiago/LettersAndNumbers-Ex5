@@ -13,10 +13,12 @@ public class NumberListModel implements NumberListContract.Model {
 
   private String data;
   public List<NumberData> datasource;
+  public int cuenta;
 
   public NumberListModel(String data) {
     this.data = data;
     this.datasource = new ArrayList<>();
+    cuenta = 1;
 
   }
 
@@ -49,5 +51,19 @@ public class NumberListModel implements NumberListContract.Model {
     NumberData valor = new NumberData();
     valor.number = cuenta++;
     datasource.add(valor);
+  }
+  @Override
+  public void aumentarCuenta() {
+    cuenta ++;
+  }
+
+  @Override
+  public int getCuenta() {
+    return this.cuenta;
+  }
+
+  @Override
+  public void setCuenta(int cuenta) {
+    this.cuenta = cuenta;
   }
 }

@@ -12,6 +12,9 @@ public class NumberListViewModel {
   public List<NumberData> datasource;
   public int cuenta;
   public int posicionArray;
+  public List<Long> listaId= new ArrayList<>();
+
+
   public NumberListViewModel() {
     datasource = new ArrayList<>();
   }

@@ -26,21 +26,34 @@ public class NumberListPresenter implements NumberListContract.Presenter {
 
   @Override
   public void onStart() {
-    // Log.e(TAG, "onStart()");
+    Log.e(TAG, "onStart()");
 
     // initialize the state if is necessary
     if (state == null) {
       state = new NumberListState();
     }
-    state.cuenta = 1;
-
+    state.cuenta = model.getCuenta();
+    model.onRestartScreen(state.datasource);
 
     // use passed state if is necessary
     LettersToNumbersState savedState = getStateFromPreviousScreen();
-    if (savedState != null) {
 
+    if (savedState != null) {
+      Log.e(TAG,savedState.cuenta+ "");
       // update the model if is necessary
       model.onDataFromPreviousScreen(savedState.data);
+
+      if(state.listaId.contains(savedState.id)){
+
+      }else{
+        state.listaId.add(savedState.id);
+        state.datasource.clear();
+      }
+
+      state.cuenta = savedState.cuenta++;
+      model.setCuenta(state.cuenta);
+
+
     }
 
   }
@@ -51,11 +64,12 @@ public class NumberListPresenter implements NumberListContract.Presenter {
 
     // update the model if is necessary
     model.onRestartScreen(state.datasource);
+    model.setCuenta(state.cuenta);
   }
 
   @Override
   public void onResume() {
-    // Log.e(TAG, "onResume()");
+    Log.e(TAG, "onResume()");
 
     /*
     // use passed state if is necessary
@@ -71,6 +85,7 @@ public class NumberListPresenter implements NumberListContract.Presenter {
     //state.data = model.getStoredData();
 
     // update the view
+    state.datasource = model.getStoredData();
     view.get().onDataUpdated(state);
 
   }
@@ -78,6 +93,9 @@ public class NumberListPresenter implements NumberListContract.Presenter {
   @Override
   public void onBackPressed() {
     // Log.e(TAG, "onBackPressed()");
+    NumbersToLettersState estado = new NumbersToLettersState();
+    estado.cuenta = state.cuenta;
+    passStateToPreviousScreen(estado);
   }
 
   @Override
@@ -127,7 +145,8 @@ public class NumberListPresenter implements NumberListContract.Presenter {
     Log.e(TAG, "onClickNumberListButton()");
     model.addNum(state.cuenta);
     state.datasource = model.getStoredData();
-    state.cuenta++;
+    model.aumentarCuenta();
+    state.cuenta = model.getCuenta();
     onResume();
   }
 

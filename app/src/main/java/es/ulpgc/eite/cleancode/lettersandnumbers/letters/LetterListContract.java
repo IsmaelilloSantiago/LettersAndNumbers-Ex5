@@ -38,6 +38,9 @@ public interface LetterListContract {
     void onRestartScreen(List<LetterData> datasource);
     void onDataFromPreviousScreen(String data);
     void addLetra(int posicion);
+
+
+
   }
 
 

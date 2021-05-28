@@ -32,6 +32,7 @@ public class LetterListPresenter implements LetterListContract.Presenter {
       state = new LetterListState();
     }
     state.poscionArrayletras = 0;
+    state.cuentaNumero = 1;
 
     /*
     // use passed state if is necessary
@@ -59,10 +60,16 @@ public class LetterListPresenter implements LetterListContract.Presenter {
 
     // use passed state if is necessary
     NumbersToLettersState savedState = getStateFromNextScreen();
-    if (savedState != null) {
 
+
+    if (savedState != null) {
+      Log.e(TAG,savedState.cuenta + "");
       // update the model if is necessary
       model.onDataFromNextScreen(savedState.data);
+
+      state.cuentaNumero = savedState.cuenta;
+
+
     }
 
 
@@ -115,6 +122,11 @@ public class LetterListPresenter implements LetterListContract.Presenter {
     state.idLetra = data.id;
 
     LettersToNumbersState estado = new LettersToNumbersState();
+    estado.cuenta = state.cuentaNumero;
+    estado.id = state.idLetra;
+    passStateToNextScreen(estado);
+
+
     view.get().navigateToNextScreen();
 
   }

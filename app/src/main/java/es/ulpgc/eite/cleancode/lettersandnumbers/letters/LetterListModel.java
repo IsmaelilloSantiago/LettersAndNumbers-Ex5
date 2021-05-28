@@ -14,11 +14,13 @@ public class LetterListModel implements LetterListContract.Model {
   private String data;
   public List<LetterData> datasource;
   public List<String> letras;
+  public int cuenta;
 
   public LetterListModel(String data) {
     this.data = data;
     this.datasource = new ArrayList<>();
     this.letras = new ArrayList<>();
+    cuenta= 0;
     this.letras.add("A");
     this.letras.add("B");
     this.letras.add("C");
@@ -54,5 +56,7 @@ public class LetterListModel implements LetterListContract.Model {
     datasource.get(posicion).letter = letras.get(posicion);
 
   }
+
+
 
 }

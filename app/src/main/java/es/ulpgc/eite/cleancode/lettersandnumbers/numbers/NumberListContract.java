@@ -36,6 +36,10 @@ public interface NumberListContract {
     void onRestartScreen(List<NumberData> data);
     void onDataFromPreviousScreen(String data);
     void addNum(int cuenta);
+
+    void aumentarCuenta();
+    int getCuenta();
+    void setCuenta(int cuenta);
   }
 
 

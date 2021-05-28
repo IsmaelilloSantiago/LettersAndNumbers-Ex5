@@ -12,6 +12,8 @@ public class LetterListViewModel {
   public List<LetterData> datasource;
   public int poscionArrayletras;
   public Long idLetra;
+
+public int cuentaNumero;
   public LetterListViewModel() {
     datasource = new ArrayList<>();
   }
